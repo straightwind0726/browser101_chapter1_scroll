@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window_scrolling_Api</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        aside {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+        }
+        button {
+            margin-right: 12px;
+            cursor: pointer;
+        }
+        div {
+            background-color: beige;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 4px;
+        }
+        .special {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <button class="scroll_by">Scroll by 100px(y)</button>
+        <button class="scroll_to">Scroll to 100px(y)</button>
+        <button class="scroll_into">Scroll into special</button>
+    </aside>
+    <div class="div"></div>
+    <div class="div"></div>
+    <div class="div"></div>
+    <div class="div"></div>
+    <div class="div"></div>
+    <div class="div"></div>
+    <div class="special"></div>
+    <div class="div"></div>
+    <div class="div"></div>
+    <div class="div"></div>
+    <script>
+        const sp = document.querySelector('.special');
+        const spRect = sp.getBoundingClientRect();
+        sp.addEventListener('click', (event) => {
+            console.log(spRect);
+            console.log(`client : ${event.clientX}, ${event.clientY}`);
+            console.log(`page : ${event.pageX}, ${event.pageY}`);
+        })
+        const scroll_by = document.querySelector('.scroll_by');
+        const scroll_to = document.querySelector('.scroll_to');
+        const scroll_into = document.querySelector('.scroll_into');
+        scroll_by.addEventListener('click', () => {
+            window.scrollBy({top: 100, left: 0, behavior: 'smooth'});
+        })
+        scroll_to.addEventListener('click', () => {
+            window.scrollTo({top: 100, left: 0, behavior: 'smooth'});
+        })
+        scroll_into.addEventListener('click', () => {
+            sp.scrollIntoView({block: "center", behavior: 'smooth'});
+        })
+    </script>
+</body>
+</html>
